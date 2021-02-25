@@ -33,3 +33,21 @@ medium_data <- rare_data %>%
   unnest_longer(time)
 
 glimpse(medium_data)
+
+well_done_data <- medium_data %>%
+  unnest_longer(works) %>%
+  hoist(.col = works,
+        id = "ID",
+        composer_name = "composerName",
+        work_title = "workTitle",
+        movement = "movement",
+        interval = "interval",
+        conductor_name = "conductorName",
+        soloists = "soloists") %>%
+  unnest_longer(id) %>%
+  unnest_longer(composer_name) %>%
+  unnest_longer(interval) %>%
+  unnest_longer(conductor_name)
+
+glimpse(well_done_data)
+  
